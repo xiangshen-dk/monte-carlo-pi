@@ -3,6 +3,7 @@
 
 ### Monte Carlo Method to calculate Pi:
 
+Here is the repo to demostrate using Monte Carlo method to calculate the Pi.
 Monte Carlo methods vary, but tend to follow a particular pattern:
 
 1.  Define a domain of possible inputs
@@ -19,7 +20,8 @@ Reference: https://en.wikipedia.org/wiki/Monte_Carlo_method
 ### Setup:
 
 *   Install the dependency and deploy the serverless applicaton.
-*   The SAM template will create a S3 bucket. Open the bucket and create two folders. Name them __input__ and __output__.
+*   Create a unique S3 bucket. Open the bucket and create two folders. Name them __input__ and __output__.
+*   Use the bucket name as the parameter for the SAM template.
 
 ### Invoke the application
 *   Create some text files each with an integer number in the file.

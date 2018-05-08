@@ -1,25 +1,30 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template for Monte Carlo simulation.
+
+Parameters:
+  S3InputOutputBucketName:
+    Type: String
+    Description: Name of S3 bucket for input/output.
+
 Resources:
+  Bucket1:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref S3InputOutputBucketName
+
   MonteCarloPi:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: pi.lambda_handler
       Runtime: python2.7
       CodeUri: .
-      Description: |
-        Lambda function to calculate Pi using Monte Carlo simulation.
+      Description: Lambda function to calculate Pi using Monte Carlo simulation.
       MemorySize: 1024
       Timeout: 300
       Policies:
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - 's3:GetObject'
-                - 's3:PutObject'
-              Resource: 'arn:aws:s3:::*'
+        - S3CrudPolicy:
+            BucketName: !Ref S3InputOutputBucketName
       Events:
         BucketEvent1:
           Type: S3
@@ -27,5 +32,3 @@ Resources:
             Bucket: !Ref Bucket1
             Events:
               - 's3:ObjectCreated:*'
-  Bucket1:
-    Type: 'AWS::S3::Bucket'
