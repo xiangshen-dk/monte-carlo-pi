@@ -19,9 +19,10 @@ Reference: https://en.wikipedia.org/wiki/Monte_Carlo_method
 
 ### Setup:
 
-*   Install the dependency and deploy the serverless applicaton.
-*   Create a unique S3 bucket. Open the bucket and create two folders. Name them __input__ and __output__.
-*   Use the bucket name as the parameter for the SAM template.
+*   Install the dependency.
+*   Use a unique bucket name as the parameter for the SAM template and deploy the serverless application.
+*   The bucket will be created by CloudFormation once the deployment completes successfully.
+*   Open the bucket and create two folders. Name them __input__ and __output__.
 
 ### Invoke the application
 *   Create some text files each with an integer number in the file.
